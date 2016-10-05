@@ -369,7 +369,7 @@ class _PrintableStructure(Structure):
     """
     Abstract class that produces nicer __str__ output than ctypes.Structure.
     e.g. instead of:
-      >>> print str(obj)
+      >>> print(str(obj))
       <class_name object at 0x7fdf82fef9e0>
     this class will print
       class_name(field_name: formatted_value, field_name: formatted_value)
@@ -1668,7 +1668,7 @@ def nvmlSystemGetTopologyGpuSet(cpuNumber):
 
     if ret != NVML_SUCCESS:
         raise NVMLError(ret)
-    print c_count.value
+    print(c_count.value)
     # call again with a buffer
     device_array = c_nvmlDevice_t * c_count.value
     c_devices = device_array()

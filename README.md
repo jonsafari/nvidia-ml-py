@@ -61,7 +61,7 @@ Each function's use is the same with the following exceptions:
     >>> try:
     ...     nvmlDeviceGetCount()
     ... except NVMLError as error:
-    ...     print error
+    ...     print(error)
     ... 
     Uninitialized
 
