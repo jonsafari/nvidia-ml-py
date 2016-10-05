@@ -13,25 +13,30 @@ http://developer.nvidia.com/nvidia-management-library-nvml
 Download the latest package from:
 http://pypi.python.org/pypi/nvidia-ml-py/
 
-Note this file can be run with `python -m doctest -v README.txt`
+Note this file can be run with `python -m doctest -v README.md`
 although the results are system dependent
 
 Requirements
 ------------
-Python 2.5, or an earlier version with the `ctypes` module.
+Python 2.5+, or an earlier version with the `ctypes` module.
 
 
 Installation
 ------------
 
-
+```bash
     sudo python setup.py install
+```
+Or locally:
+```bash
+    python setup.py install --user
+```
 
 
 Usage
 -----
 
-
+```python
     >>> from pynvml import *
     >>> nvmlInit()
     >>> print "Driver Version:", nvmlSystemGetDriverVersion()
@@ -44,6 +49,8 @@ Usage
     Device 0 : Tesla K40c
     
     >>> nvmlShutdown()
+
+```
 
 
 Additionally, see `nvidia_smi.py`.  A sample application.
@@ -58,6 +65,7 @@ Each function's use is the same with the following exceptions:
   Python exceptions.
 
 
+```python
     >>> try:
     ...     nvmlDeviceGetCount()
     ... except NVMLError as error:
@@ -65,22 +73,29 @@ Each function's use is the same with the following exceptions:
     ... 
     Uninitialized
 
+```
 
 - C function output parameters are returned from the corresponding
   Python function left to right.
 
     
+```c
     nvmlReturn_t nvmlDeviceGetEccMode(nvmlDevice_t device,
                                       nvmlEnableState_t *current,
                                       nvmlEnableState_t *pending);
+```
 
+```python
     >>> nvmlInit()
     >>> handle = nvmlDeviceGetHandleByIndex(0)
     >>> (current, pending) = nvmlDeviceGetEccMode(handle)
 
+```
+
 - C structs are converted into Python classes.
 
     
+```c
     nvmlReturn_t DECLDIR nvmlDeviceGetMemoryInfo(nvmlDevice_t device,
                                                  nvmlMemory_t *memory);
     typedef struct nvmlMemory_st {
@@ -88,7 +103,9 @@ Each function's use is the same with the following exceptions:
         unsigned long long free;
         unsigned long long used;
     } nvmlMemory_t;
+```
 
+```python
     >>> info = nvmlDeviceGetMemoryInfo(handle)
     >>> print "Total memory:", info.total
     Total memory: 5636292608
@@ -97,14 +114,20 @@ Each function's use is the same with the following exceptions:
     >>> print "Used memory:", info.used
     Used memory: 57872384
 
-- Python handles string buffer creation.
+```
 
+- Python handles string buffer creation.
     
+```c
     nvmlReturn_t nvmlSystemGetDriverVersion(char* version,
                                             unsigned int length);
+```
 
+```python
     >>> version = nvmlSystemGetDriverVersion();
     >>> nvmlShutdown()
+
+```
 
 For usage information see the NVML documentation.
 
