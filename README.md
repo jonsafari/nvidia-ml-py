@@ -1,8 +1,6 @@
-======
 pyNVML
 ======
 
-------------------------------------------------
 Python bindings to the NVIDIA Management Library
 ------------------------------------------------
 
@@ -15,19 +13,24 @@ http://developer.nvidia.com/nvidia-management-library-nvml
 Download the latest package from:
 http://pypi.python.org/pypi/nvidia-ml-py/
 
-Note this file can be run with 'python -m doctest -v README.txt'
+Note this file can be run with `python -m doctest -v README.txt`
 although the results are system dependent
 
-REQUIRES
---------
-Python 2.5, or an earlier version with the ctypes module.
-
-INSTALLATION
+Requirements
 ------------
-sudo python setup.py install
+Python 2.5, or an earlier version with the `ctypes` module.
 
-USAGE
+
+Installation
+------------
+
+
+    sudo python setup.py install
+
+
+Usage
 -----
+
 
     >>> from pynvml import *
     >>> nvmlInit()
@@ -42,15 +45,18 @@ USAGE
     
     >>> nvmlShutdown()
 
-Additionally, see nvidia_smi.py.  A sample application.
 
-FUNCTIONS
+Additionally, see `nvidia_smi.py`.  A sample application.
+
+
+Function
 ---------
 Python methods wrap NVML functions, implemented in a C shared library.
 Each function's use is the same with the following exceptions:
 
 - Instead of returning error codes, failing error codes are raised as 
   Python exceptions.
+
 
     >>> try:
     ...     nvmlDeviceGetCount()
@@ -59,10 +65,10 @@ Each function's use is the same with the following exceptions:
     ... 
     Uninitialized
 
+
 - C function output parameters are returned from the corresponding
   Python function left to right.
 
-::
     
     nvmlReturn_t nvmlDeviceGetEccMode(nvmlDevice_t device,
                                       nvmlEnableState_t *current,
@@ -74,7 +80,6 @@ Each function's use is the same with the following exceptions:
 
 - C structs are converted into Python classes.
 
-::
     
     nvmlReturn_t DECLDIR nvmlDeviceGetMemoryInfo(nvmlDevice_t device,
                                                  nvmlMemory_t *memory);
@@ -94,7 +99,6 @@ Each function's use is the same with the following exceptions:
 
 - Python handles string buffer creation.
 
-::
     
     nvmlReturn_t nvmlSystemGetDriverVersion(char* version,
                                             unsigned int length);
@@ -104,13 +108,15 @@ Each function's use is the same with the following exceptions:
 
 For usage information see the NVML documentation.
 
-VARIABLES
+
+Variables
 ---------
 All meaningful NVML constants and enums are exposed in Python.
 
-The NVML_VALUE_NOT_AVAILABLE constant is not used.  Instead None is mapped to the field.
+The `NVML_VALUE_NOT_AVAILABLE` constant is not used.  Instead `None` is mapped to the field.
 
-RELEASE NOTES
+
+Release Notes
 -------------
 Version 2.285.0
 - Added new functions for NVML 2.285.  See NVML documentation for more information.
@@ -134,11 +140,12 @@ Version 7.346.0
 Version 7.352.0
 - Added new functions for NVML 7.352.  See NVML documentation for more information.
 
-COPYRIGHT
+Copyright
 ---------
 Copyright (c) 2011-2015, NVIDIA Corporation.  All rights reserved.
 
-LICENSE
+
+License
 -------
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
@@ -149,4 +156,3 @@ Redistribution and use in source and binary forms, with or without modification,
 - Neither the name of the NVIDIA Corporation nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
