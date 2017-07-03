@@ -1,6 +1,10 @@
 pyNVML
 ======
 
+**Note**: I'm no longer maintaining this code, so please fork it and improve it even more!
+
+
+
 Python bindings to the NVIDIA Management Library
 ------------------------------------------------
 
